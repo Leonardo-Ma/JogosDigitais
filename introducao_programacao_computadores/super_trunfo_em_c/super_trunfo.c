@@ -6,23 +6,27 @@
 // Siga os comentários para implementar cada parte do desafio.
 
 void lerCarta(char estado[], char codigoCarta[], char nomeCidade[], int *qtdHabitantes, float *area, float *pib, int *qtdPontosTuristicos);
-void exibirCarta(char estado[], char codigoCarta[], char nomeCidade[], int qtdHabitantes, float area, float pib, int qtdPontosTuristicos);
+void exibirCarta(char estado[], char codigoCarta[], char nomeCidade[], int qtdHabitantes, float area, float pib, int qtdPontosTuristicos, float densidadePop, float pibPerCapita);
 
 int main() {
     int qtdHabitantes = 0, qtdPontosTuristicos = 0;
-    float area = 0.0f, pib = 0.0f;
+    float area = 0.0f, pib = 0.0f, densidadePop = 0.0f, pibPerCapita = 0.0f;
     char estado[50], codigoCarta[50], nomeCidade[50];
 
     printf("Desafio Super Trunfo - Países\n\n");
     printf("Digite os dados da carta 1:\n");
     lerCarta(estado, codigoCarta, nomeCidade, &qtdHabitantes, &area, &pib, &qtdPontosTuristicos);
+    densidadePop = qtdHabitantes / area;
+    pibPerCapita = pib / qtdHabitantes;
     printf("\nCarta 1:\n");
-    exibirCarta(estado, codigoCarta, nomeCidade, qtdHabitantes, area, pib, qtdPontosTuristicos);
+    exibirCarta(estado, codigoCarta, nomeCidade, qtdHabitantes, area, pib, qtdPontosTuristicos, densidadePop, pibPerCapita);
 
     printf("\nDigite os dados da carta 2:\n");
     lerCarta(estado, codigoCarta, nomeCidade, &qtdHabitantes, &area, &pib, &qtdPontosTuristicos);
+    densidadePop = qtdHabitantes / area;
+    pibPerCapita = pib / qtdHabitantes;
     printf("\nCarta 2:\n");
-    exibirCarta(estado, codigoCarta, nomeCidade, qtdHabitantes, area, pib, qtdPontosTuristicos);
+    exibirCarta(estado, codigoCarta, nomeCidade, qtdHabitantes, area, pib, qtdPontosTuristicos, densidadePop, pibPerCapita);
     
     return 0;
 }
@@ -50,7 +54,7 @@ void lerCarta(char estado[], char codigoCarta[], char nomeCidade[], int *qtdHabi
     scanf("%i", qtdPontosTuristicos);
 }
 
-void exibirCarta(char estado[], char codigoCarta[], char nomeCidade[], int qtdHabitantes, float area, float pib, int qtdPontosTuristicos) {
+void exibirCarta(char estado[], char codigoCarta[], char nomeCidade[], int qtdHabitantes, float area, float pib, int qtdPontosTuristicos, float densidadePop, float pibPerCapita) {
     printf("==================================\n");
     printf("Estado: %s\n", estado);
     printf("Código: %s\n", codigoCarta);
@@ -59,5 +63,7 @@ void exibirCarta(char estado[], char codigoCarta[], char nomeCidade[], int qtdHa
     printf("Área: %.2f km²\n", area);
     printf("PIB: R$ %.2f\n", pib);
     printf("Número de pontos turísticos: %i\n", qtdPontosTuristicos);
+    printf("Densidade populacional: %.2f\n", densidadePop);
+    printf("PIB per Capita: %.2f\n", pibPerCapita);
     printf("==================================\n");
 }
